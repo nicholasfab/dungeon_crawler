@@ -1,0 +1,84 @@
+health
+mana*
+
+rooms:
+trap
+loot
+monster
+boss*
+
+infinite levels of dungeon
+Locked rooms? - requires Key item
+
+limited inventory
+
+items- weapons, health, armor, magic*
+
+order:
+monsters
+enemies
+bosses(better loot, optional?)
+
+spells: 
+Heal(heals half health, but v expensive and has a long cooldown)?
+
+Firebolt (shoots fireball)
+Abracadabra (annoys enemies)
+Shock (fires lightning)
+
+Fireball (shoots bigger fireball)
+Turn Undead (exorcises enemies)
+God Blow (explodes enemies)
+
+Ifrit's Curse (burns enemies)
+Vow of Caine (buries enemies)
+Edge of Oblivion (obliterates enemies)
+
+
+Items:
+red potion +5
+blue potion +5
+rusty sword -1
+rusty dagger -1
+wooden shield 
+
+glowing red potion +8
+glowing blue potion +8
+knight's sword
+coward's blade
+leather cap
+
+glowing green potion +10
+gold potion +10
+Sickle of Lost Requiem
+vial of blessed water
+chainmail armor 
+
+goldenleaf tea +15
+glowing gold potion +15
+Forbidden Tome +new lvl 1 spell
+Argonaut's Spear
+Cursed Blade
+gorgonskin armor 
+
+Elixir of Life vial +25
+Sorcerer's Scroll +new lvl 2 spell
+Sword of Heroic Desire
+Monkey's Paw
+Ancient Magus' Robes 
+
+Potion of Regeneration +50
+Grimoire +new lvl 3 spell
+Magus' Staff
+Holy Hand Grenade
+Dragonskin Armor 
+
+
+
+Fight System=
+Enemy health
+Player health
+Enemy attack strength
+Player attack strength
+
+player input + enemy input -> rockpaperscissors -> damage dealt
