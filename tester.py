@@ -4,40 +4,45 @@ import random
 weapon_list = ["sword", "bow", "rock"]
 item_list = ["potion", "arrow", "stick"]
 
-##class Inventory:
-##    global weapon_list
-##    global item_list
-##
-##    
-##    global name
-##    global damage
-##
-##    
-##    def __init__(self, name):
-##        self.name = name
-##        self.weapons = []
-##        self.items = []
-##
-##    def add_weapon(self, weapon):
-##        self.weapons.append(weapon)
-##
-##    def add_item(self, item):
-##        self.items.append(item)
-        
-class object:
+class item:
+    def __init__(self, name):
+        self.name = name
 
-        
-def main():
-    test = Inventory(name)
+class weapon(item):
+    def __init__(self, name, damage, durability):
+        super().__init__(name, "weapon")
+        self.damage = damage
+        self.durability = durability
 
-def start():
-    global name
-    global damage
-    
-    name = input("name weapon: ")
-    damage = input("set damage: ")
+    def use(self):
+        self.durability -= 1
+        if self.durability =< 0:
+            print(self.name, "was destroyed!")
+        else:
+            print(self.durability, "uses left.")
 
-    main()
+class armor(item):
+    def __init__(self, name, protect, durability):
+        super().__init__(name, "armor")
+        self.protect = protect
+        self.durability = durability
 
+    def use(self):
+        self.durability -= 1
+        if self.durability =< 0:
+            print(self.name, "was destroyed!")
+        else:
+            print(self.durability, "uses left.")
+            
+class spell(item):
+    def __init__(self, name, damage, mana):
+        super().__init__(name, "potion")
+        self.damage = damage
+        self.mana = mana
 
-start()
+    def use(self):
+        self.durability -= 1
+        if self.durability =< 0:
+            print("Out of mana!")
+        else:
+            print(self.mana, "mana left.")
