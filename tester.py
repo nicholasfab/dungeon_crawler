@@ -1,48 +1,33 @@
 import time
 import random
 
-weapon_list = ["sword", "bow", "rock"]
-item_list = ["potion", "arrow", "stick"]
-
+        
 class item:
     def __init__(self, name):
         self.name = name
 
 class weapon(item):
-    def __init__(self, name, damage, durability):
-        super().__init__(name, "weapon")
+    def __init__(self, name, durability, damage):
+        super().__init__("weapon")
+        self.durability = durability
         self.damage = damage
-        self.durability = durability
 
     def use(self):
         self.durability -= 1
-        if self.durability =< 0:
-            print(self.name, "was destroyed!")
-        else:
-            print(self.durability, "uses left.")
-
-class armor(item):
-    def __init__(self, name, protect, durability):
-        super().__init__(name, "armor")
-        self.protect = protect
-        self.durability = durability
-
-    def use(self):
-        self.durability -= 1
-        if self.durability =< 0:
+        if self.durability <= 0:
             print(self.name, "was destroyed!")
         else:
             print(self.durability, "uses left.")
             
 class spell(item):
-    def __init__(self, name, damage, mana):
-        super().__init__(name, "potion")
+    def __init__(self, name, mana, damage):
+        super().__init__("spell")
         self.damage = damage
         self.mana = mana
 
     def use(self):
-        self.durability -= 1
-        if self.durability =< 0:
-            print("Out of mana!")
+        self.mana -= 1
+        if self.mana <= 0:
+            print("Not enough mana!")
         else:
             print(self.mana, "mana left.")
