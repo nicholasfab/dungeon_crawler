@@ -189,17 +189,6 @@ def start():
                 
         inventory = [weapon("punch", 100000, 1), "magic"]
         player_spells = [magic("Heal", 0, 2, "heal", 5)]
-            
-        def pop_item():
-            global inventory
-            global treasure
-
-            print("Inventory: ", inventory)
-            pick = input("pick one: ")
-            if pick == inventory[i].name:
-                x = inventory[i]
-            b = inventory.index(x)
-            inventory.pop(b)
 
         #magic list
         spells_1 = [magic("Firebolt", 1, 0, "attack", 5),
@@ -297,7 +286,7 @@ def start():
             print("Indeed, the disembodied voice from eariler has returned...")
             input("Noticing your awareness, it begins to speak once more:")
             print("After a long and arduous journey, you managed to survive the Dungeon! Along the way, whilst battling great evils, you collected treasures and arcane knowledge beyond the wildest dreams of man and have lived to tell the tale! Few other heroes have been able to complete the 100 floors of the dungeon.")
-            x = input("Among them, you surely stand as a living legend. What is your name, hero?")
+            x = input("Among them, you surely stand as a living legend. What is your name, hero?  ")
             print("Well, we honor you, ", x, " for your strength and bravery! Now go! Other legends about your deeds surely wait to be told!")
             input("[THE END]")
             return
@@ -440,20 +429,19 @@ def start():
             print("Suddenly, you spot a old chest sitting in the corner of the room. Covered in cobwebs, it lures you with the promise of treasure and arcane secrets.")
             input("...")
             input("You carefully lift the lid of the ancient trunk, revealing a great number of trinkets, some more useful than others.")
-            print("Primarily, a few things catch your eye: a ", t1.name, ", a ", t2.name, ", and a", t3.name, ".")
+            print("Primarily, a few things catch your eye: a ", t1.name, "[1], a ", t2.name, "[2], and a", t3.name, "[3].")
 
-            pick = int(input("Pick an item - 0, 1, 2:"))
+            pick = int(input("Pick an item:"))
+
+            if pick == 1:                
+                inventory.append(t1)
+            if pick == 2:                
+                inventory.append(t2)
+            if pick == 3:                
+                inventory.append(t3)
+
             if len(inventory) < 6:
-                if pick == 0:
-                    picked = t1
-                if pick == 1:
-                    picked = t2
-                if pick == 2:
-                    picked = t3
-                
-                inventory.append(picked)
-                print("Added", picked.name, "!")
-                
+                print("Added", i.name, "!")
             else:
                 print("Inventory full!")
       
@@ -501,7 +489,7 @@ def start():
             global enemy_damage
             
             inventory_check()
-            pick = int(input("Which item do you want to use?:"))
+            pick = int(input("Which item do you want to use? [Type the number]:"))
             
             if pick > (len(inventory)-1):
                 print("Pick something in your inventory!")
@@ -530,7 +518,8 @@ def start():
                             print("Currently available spells:")
                             for i in player_spells:
                                 print(i.name)
-                            x = int(input("Which spell do you want to use?:"))
+                                print("[", inventory.index(i), "]")
+                            x = int(input("Which spell do you want to use? [Type the number]:"))
                             player_spells[x].use()
                             
 
@@ -591,13 +580,13 @@ def start():
                                 if roomstype[index] == "monster":
                                     monster()
                 visited = True
-                pick1 = input('''                        -Go forward (1)
-                        -Go right (2)
-                        -Go back (3)
-                        -Go left(4)
-                        -Check your inventory (i)
-                        -Drop an item (d)
-                        -Use an item (u)
+                pick1 = input('''                        -Go forward [1]
+                        -Go right [2]
+                        -Go back [3]
+                        -Go left [4]
+                        -Check your inventory [i]
+                        -Drop an item [d]
+                        -Use an item [u]
 
 
                             ''')
@@ -614,7 +603,7 @@ def start():
                     step()
                 if pick1 == "u":
                     inventory_check()
-                    pick = input("Use which item?:")
+                    pick = input("Use which item? [Type the number]:")
                     if int(pick) > len(inventory):
                         print("Pick something in your inventory!")
                         step()
@@ -625,25 +614,33 @@ def start():
                             print("Currently available spells:")
                             for i in player_spells:
                                 print(i.name)
-                            x = int(input("Which spell do you want to use?:"))
+                                print("[", player_spells.index(i), "]")
+                            x = int(input("Which spell do you want to use? [Type the number]:"))
                             player_spells[x].use()
                             
                         else:
-                            print("if you picked magic, something is wrong!!!!!")
-                            print(inventory[x])
+                            print(inventory[x]) ##come back to this
                             inventory[x].use()
                             step()
                             
                 if pick1 == "d":
                     inventory_check()
-                    pick = int(input("Drop which item?:"))
-                    if pick == 0 or pick > len(inventory):
+                    pick = int(input("Drop which item? [Type the number]:"))
+                    if pick == 0 or pick == 1:
                         print("You can't drop that!")
                         step()
                     else:
-                        inventory.pop(pick)
+                        for i in inventory:
+                            if isinstance(i, weapon) or isinstance(i, potion):
+                                if i == pick:
+                                    x = inventory.index(i)
+                            else:
+                                print("Pick something in your inventory!")
+                                step()
+                        inventory.pop(x)
                         print("Dropped item!")    
                         step()
+                    
                     
                 else:
                     print("Make a decision, adventurer!")
@@ -663,8 +660,10 @@ def start():
             for i in inventory:
                 if isinstance(i, str):
                     print(i)
+                    print("[", inventory.index(i), "]")
                 else:
                     print(i.name)
+                    print("[", inventory.index(i), "]")
                 
         def up_check():
             global x
