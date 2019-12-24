@@ -31,6 +31,8 @@ weapon = False
 enemy_health = 0
 enemy_damage = 0
 
+deaths = 0
+
 def start():
     global health
     global mana
@@ -52,6 +54,7 @@ def start():
     global level
     global spells
     global player_spells
+    global deaths
 
     inventory = []
     treasure = []
@@ -61,6 +64,7 @@ def start():
     level = 0
     health = 10
     mana = 5
+    deaths = 0
     
     def floorstart():
         global health
@@ -87,6 +91,7 @@ def start():
         
         mpg1 = random.randint(-5,5)
         mpg2 = random.randint(-5,5)
+
         x = 0
         y = 0
 
@@ -110,19 +115,6 @@ def start():
                 else:
                     print("Used", self.name, "!")
                     print(self.durab, "uses left.")
-
-##        class armor():
-##            def __init__(self, name, durab, block):
-##                self.name = name
-##                self.durab = durab
-##                self.block = block
-##
-##            def use(self):
-##                self.durab -= 1
-##                if self.durab <= 0:
-##                    print(self.name, "was destroyed!")
-##                else:
-##                    print(self.durab, "hits left.")
 
         class magic():
             global mana
@@ -155,10 +147,9 @@ def start():
                     player_spells.append(spells_2[x])
                 if self.level == 3:
                     player_spells.append(spells_3[x])
+                    
                 print("You read the", self.name, "!")
                 inventory.pop(inventory.index(self))
-                
-
                                    
         class potion():
             global health
@@ -187,6 +178,14 @@ def start():
 
                 print(self.name, "was used up!")
                 inventory.pop(inventory.index(self))
+
+        class enemy():
+            def __init__(self, name, intros, attacks, deaths):
+                self.name = name
+                self.intros = intros
+                self.attacks = attacks
+                self.deaths = deaths
+                
                 
         inventory = [weapon("punch", 100000, 1), "magic"]
         player_spells = [magic("Heal", 0, 2, "heal", 5)]
@@ -210,38 +209,35 @@ def start():
         potion("blue potion", 1, "mana"),
         weapon("rusty sword", 10, 2),
         weapon("rusty dagger", 5, 2),
-       # armor("wooden shield", 1, 1),
                     
         potion("glowing red potion", 2, "health"),
         potion("glowing blue potion", 2, "mana"),
         weapon("knight's sword", 10, 5),
         weapon("coward's blade", 10, 3),
-      #  armor("leather cap", 1, 1),
 
         potion("glowing green potion", 4, "health"),
         potion("gold potion", 4, "mana"),
         weapon("Sickle of Lost Requiem", 15, 8),
         potion("vial of blessed water", 6, "health"),
-      #  armor("chainmail armor", 1, 1),
 
         potion("goldenleaf tea", 8, "health"),
         potion("glowing gold potion", 8, "mana"),
         special("Forbidden Tome", 1),
         weapon("Argonaut's Spear", 10, 15),
         weapon("Cursed Blade", 15, 13),
-      #  armor("gorgonskin armor", 1, 1),
 
         potion("Elixir of Life vial", 16, "health"),
         special("Sorcerer's Scroll", 2),
         weapon("Sword of Heroic Desire", 15, 25),
         potion("Bottle of Aether", 16, "mana"),
-    #    armor("Ancient Magus' Robes", 1, 1),
 
         potion("Potion of Regeneration", 32, "health"),
         special("Grimoire", 3),
         weapon("Magus' Staff", 25, 30),
         weapon("Holy Hand Grenade", 1, 40)]
-      #  armor("Dragonskin Armor", 1, 1)]
+
+        #enemies
+        enemies = [enemy("scorpion"), enemy("snake"), enemy("goblin"), enemy("ogre"), enemy("chimera"), enemy("mummy"), enemy("cultist"), enemy("demon"), enemy("dragon"), enemy("lizard"), enemy("mountain"), enemy("vampire")]
 
         #room assignment
         roomsx = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
@@ -251,6 +247,7 @@ def start():
         roomstype = []
 
         index = 61
+
 
         for i in roomsx:
             for a in roomsy:
@@ -294,6 +291,8 @@ def start():
             return
 
         def deathscene():
+            global deaths
+            
             input("The world suddenly cuts to black.")
             time.sleep(1)
             print(".")
@@ -304,14 +303,45 @@ def start():
             time.sleep(1)
             input("A deep, booming voice bellows inside your head:")
 
-            x = input("It seems that your health has reached 0! I regret to inform you that you are dead. I can revive you, if you so choose, but I cannot return you to your position in the Dungeon. You must begin again. Do you still wish to continue? y/n ")
+            x = input("It seems that your health has reached 0! I regret to inform you that you are dead. I can revive you, if you so choose, but I cannot return you to your position in the Dungeon. You must begin again. Do you still wish to continue? [y/n] ")
 
             if x == str("y"):
                 input("What great spirit! Onwards!")
+                deaths = 0
                 start()
-            else:
+            if x == str("n"):
                 input("Very well. Farewell, adventurer!")
                 return
+            else:
+                deaths += 1
+                if deaths == 1:
+                    print("")
+                    input("That's not an answer, let's try that again.")
+                    print("")
+                    deathscene()
+                if deaths == 2:
+                    print("")
+                    input("If you're confused right now, it would appear that you aren't pressing 'y' or 'n.'")
+                    input("Hopefully I've cleared up your little mishap. Off you go now.")
+                    print("")
+                    deathscene()
+                if deaths == 3:
+                    print("")
+                    input("Well, which will it be? Yes or no? Pick one!")
+                    print("")
+                    deathscene()
+                if deaths == 4:
+                    input("This is just getting ridiculuous. I don't have all the time in the- well, actually.. Look, you know what I mean.")
+                    deathscene()
+                if deaths >= 5:
+                    time.sleep(1)
+                    print(".")
+                    time.sleep(1)
+                    print(".")
+                    time.sleep(1)
+                    input("You again? I can't believe you. You call yourself an adventurer, and yet you spend all your time in Limbo?")
+                    input("Fine, fine. You clearly don't want to be here and are just trying to break the game. I hope you're happy being trapped here with me forever.")
+                    return
                      
 
         def new_lvl():
@@ -331,6 +361,7 @@ def start():
         
                 if level == 4:
                     print("[BEGINNING OF PART 2: BREAKING THE SEAL]")
+                    #part two intro paragraph
                 floorstart()
             else:
                 input("You decide there is still more to be found on the level of the dungeon you are already in.")
@@ -370,12 +401,19 @@ def start():
             if x == 2:
                 input("Carefully resting your hands on the lid, you attempt to open the trunk. Much to your surprise, the chest lunges towards you and opens its wood-like mouth wide.")
             
-            input("Match the number to surive! Your accuracy determines the damage dealt.")
+            input("Match the number to survive! Your accuracy determines the damage dealt.")
             
             print("On Floor", floor, ", the max number is", trapdam, ".")
             y = input("Choose your number: ")
-            h = abs(z - int(y))
-            health -= h
+
+            if any(s.isdigit() for s in y):
+                r = int(y)
+                h = abs(z - r)
+                health -= h
+                
+            else:
+                print("Pick a number!")
+                trap()
             
             print("You took", h, "damage!")
 
@@ -509,6 +547,8 @@ def start():
             global level
             global enemy_health
             global enemy_damage
+
+            enemies[]
             
             inventory_check()
             pick1 = input("Which item do you want to use? [Type the number]:")
@@ -541,9 +581,11 @@ def start():
                                 if pick == 1:
                                     print("")
                                     print("Currently available spells:")
+                                    
                                     for i in player_spells:
                                         print(i.name)
                                         print("[", player_spells.index(i), "]")
+                                        
                                     print("['c' to cancel]")
                                     x = input("Which spell do you want to use? [Type the number]:")
 
@@ -552,7 +594,15 @@ def start():
                                         battle()
                                     else:
                                         y = int(x)
+
                                         player_spells[y].use()
+
+                                        if player_spells[y].typeis == "attack":
+                                            enemy_health -= player_spells[y].damage
+                                            print("Enemy took", player_spells[y].damage, "damage!")
+                                        else:
+                                            health += player_spells[y].heal
+                                            print("Gained", player_spells[y].heal, "health!")
 
                             if enemy_health <= 0:
                                 print("You won!")
@@ -589,6 +639,8 @@ def start():
             global index
             global roomstype
             global visited
+            global health
+            global mana
 
             lvl_check()
 
@@ -610,6 +662,7 @@ def start():
                                 if roomstype[index] == "monster":
                                     monster()
                 visited = True
+                
                 pick1 = input('''                        -Go forward [1]
                         -Go right [2]
                         -Go back [3]
@@ -641,19 +694,40 @@ def start():
                         if int(pick) >= len(inventory):
                             print("Pick something in your inventory!")
                             step()
-                        print(inventory[int(pick)])
-                        if inventory[int(pick)] == "magic":
-                            print("")
-                            print("Currently available spells:")
-                            for i in player_spells:
-                                print("[", player_spells.index(i), "]")
-                            x = int(input("Which spell do you want to use? [Type the number]:"))
-                            player_spells[x].use()
                             
                         else:
-                            print(inventory[x])
-                            inventory[x].use()
-                            step()
+                            if inventory[int(pick)] == "magic":
+                                #items magic
+                                print("")
+                                print("Currently available spells:")
+                                for i in player_spells:
+                                    print(i.name)
+                                    print("[", player_spells.index(i), "]")
+                                print("['c' to cancel]")
+                                
+                                x = input("Which spell do you want to use? [Type the number]:")
+
+                                if x == "c":
+                                    print("Spell cancelled.")
+                                    step()
+                                    
+                                else:
+                                    y = int(x)
+                                    
+                                    if mana >= player_spells[y].cost:
+                                        print("spell worked")
+                                        if player_spells[y].typeis == "attack":
+                                            enemy_health -= player_spells[y].damage
+                                            print("Enemy took", player_spells[y].damage, "damage!")
+                                        else:
+                                            health += player_spells[y].heal
+                                            print("Gained", player_spells[y].heal, "health!")
+                                    player_spells[y].use()
+                                    step()
+                            else:
+                                #items not magic
+                                inventory[x].use()
+                                step()
                     else:
                         print("Pick a number!")
                         step()
