@@ -1,5 +1,5 @@
 health
-mana*
+mana
 
 rooms:
 trap
@@ -12,7 +12,7 @@ Locked rooms? - requires Key item
 
 limited inventory
 
-items- weapons, health, armor, magic*
+items- weapons, health, armor, magic
 
 order:
 monsters
@@ -20,17 +20,17 @@ enemies
 bosses(better loot, optional?)
 
 spells: 
-Heal(heals half health, but v expensive and has a long cooldown)?
+Heal +5
 
-Firebolt (shoots fireball)
+Firebolt (shoots fireball) -5
 Abracadabra (annoys enemies)
 Shock (fires lightning)
 
-Fireball (shoots bigger fireball)
+Fireball (shoots bigger fireball) -10
 Turn Undead (exorcises enemies)
 God Blow (explodes enemies)
 
-Ifrit's Curse (burns enemies)
+Ifrit's Curse (burns enemies) -20
 Vow of Caine (buries enemies)
 Edge of Oblivion (obliterates enemies)
 
@@ -38,47 +38,80 @@ Edge of Oblivion (obliterates enemies)
 Items:
 red potion +5
 blue potion +5
-rusty sword -1
-rusty dagger -1
+rusty sword -2
+rusty dagger -2
 wooden shield 
 
 glowing red potion +8
 glowing blue potion +8
-knight's sword
-coward's blade
+knight's sword -5
+coward's blade -3
 leather cap
 
 glowing green potion +10
 gold potion +10
-Sickle of Lost Requiem
-vial of blessed water
+Sickle of Lost Requiem -8
+vial of blessed water +15
 chainmail armor 
 
 goldenleaf tea +15
 glowing gold potion +15
 Forbidden Tome +new lvl 1 spell
-Argonaut's Spear
-Cursed Blade
+Argonaut's Spear -15
+Cursed Blade -13
 gorgonskin armor 
 
 Elixir of Life vial +25
 Sorcerer's Scroll +new lvl 2 spell
-Sword of Heroic Desire
-Monkey's Paw
+Sword of Heroic Desire -25
+Bottle of Aether +25
 Ancient Magus' Robes 
 
 Potion of Regeneration +50
 Grimoire +new lvl 3 spell
-Magus' Staff
-Holy Hand Grenade
+Magus' Staff -30
+Holy Hand Grenade -40
 Dragonskin Armor 
 
 
+Magic system:
+Finding grimoire makes new menu for spells
+Spells don't get destroyed
+Grimoires don't get destroyed
+Can only use spells with enough mana
+Different spells need more mana per use
+Different spells do diff damage
 
-Fight System=
-Enemy health
-Player health
-Enemy attack strength
-Player attack strength
 
-player input + enemy input -> rockpaperscissors -> damage dealt
+
+Types of monsters [6]:
+---PART 1: ENTERING THE TOMB---
+Giant Scorpion 
+Snake
+
+Goblin-like
+Ogre
+
+Chimera 
+Mummified priest
+---PART 2: BREAKING THE SEAL---
+
+Cultist of P'tik 'Kira
+'Dai va (evil spirit, demon/troll-like)
+
+
+Tan'ni na (Serpent dragon)
+Lizard statue
+
+Lamashtu (female mountain demon, ate pregnant women and children)
+Ekimmu (vampire ghost, Lilith-style)
+
+
+BOSSES [6]:
+The Shadow, Lower Abyssal Spirit
+The Hat Man, Lower Abyssal Spirit
+Qo'la Sos, Upper Abyssal Demon of Stone (Ke'pa Ia 'Dai va) - GOLEM
+
+Tiamat, Upper Abyssal Demon of the Sea ('Iam ma 'Dai va) - SEA DRAGON
+Ska'ras Ti, Lesser God of the Lost ('Tlaq ta A'laha )
+P'tik 'Kira, Eldritch God of the Abyss (la Mit Takh'ma na A'laha)
