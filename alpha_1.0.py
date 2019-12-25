@@ -496,8 +496,6 @@ def start():
             global treasure
             global level
 
-            level = 4
-
             if level == 1:
                 a = 1
                 x = 5
