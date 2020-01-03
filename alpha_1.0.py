@@ -74,8 +74,8 @@ def start():
     enemies = []
     floor = 0
     level = 0
-    health = 1000
-    mana = 5000
+    health = 10
+    mana = 5
     deaths = 0
     battling = False
     
@@ -536,6 +536,9 @@ def start():
             if pick == 3:                
                 inventory.append(t3)
                 b = t3
+            else:
+                print("Pick a number!")
+                loot()
 
             if len(inventory) < 6:
                 print("Added", b.name, "!")
