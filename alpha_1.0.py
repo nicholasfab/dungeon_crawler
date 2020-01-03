@@ -241,7 +241,7 @@ def start():
         magic("Edge of Oblivion", 3, 0, "attack", 20, "The moment the last of the incantation leaves your lips, all air in the room vanishes. An unthinkable pressure seems to close in from all sides as the room gets even darker. Before you, your enemy seems afraid. It trembles, the blinks out of existence for a moment.")]
 
         #items list
-        treasure = ["filler",
+        treasure = [weapon("congrats ali, we found the bug. woot.", 1, 1),
         potion("red potion", 1, "health"),
         potion("blue potion", 1, "mana"),
         weapon("rusty sword", 10, 2),
@@ -496,8 +496,7 @@ def start():
             global inventory
             global treasure
             global level
-
-            b = "nothing lol"
+            b = treasure[0]
 
             if level == 1:
                 a = 1
