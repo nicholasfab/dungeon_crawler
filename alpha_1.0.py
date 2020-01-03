@@ -360,6 +360,7 @@ def start():
             if x == str("n"):
                 input("Very well. Farewell, adventurer!")
                 return
+            
             else:
                 deaths += 1
                 if deaths == 1:
@@ -495,6 +496,8 @@ def start():
             global inventory
             global treasure
             global level
+
+            b = "nothing lol"
 
             if level == 1:
                 a = 1
