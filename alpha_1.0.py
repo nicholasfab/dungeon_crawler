@@ -526,8 +526,9 @@ def start():
             print("Primarily, a few things catch your eye: a ", t1.name, "[1], a ", t2.name, "[2], and a", t3.name, "[3].")
 
             pick = int(input("Pick an item:"))
-
-            if pick == 1:                
+            
+            if any(s.isdigit() for s in pick):
+                if pick == 1:                
                 inventory.append(t1)
                 b = t1
             if pick == 2:                
@@ -539,6 +540,9 @@ def start():
             else:
                 print("Pick a number!")
                 loot()
+                
+            
+
 
             if len(inventory) < 6:
                 print("Added", b.name, "!")
