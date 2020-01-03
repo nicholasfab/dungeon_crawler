@@ -662,16 +662,20 @@ def start():
                                         print("Spell cancelled.")
                                         battle()
                                     else:
-                                        y = int(x)
+                                        if any(s.isdigit() for s in pick1):
+                                            y = int(x)
 
-                                        player_spells[y].use()
+                                            player_spells[y].use()
 
-                                        if player_spells[y].typeis == "attack":
-                                            enemy_health -= player_spells[y].damage
-                                            print("Enemy took", player_spells[y].damage, "damage!")
+                                            if player_spells[y].typeis == "attack":
+                                                enemy_health -= player_spells[y].damage
+                                                print("Enemy took", player_spells[y].damage, "damage!")
+                                            else:
+                                                health += player_spells[y].heal
+                                                print("Gained", player_spells[y].heal, "health!")
                                         else:
-                                            health += player_spells[y].heal
-                                            print("Gained", player_spells[y].heal, "health!")
+                                            print("Cancel or pick a number!")
+                                            battle()
 
                             if enemy_health <= 0:
                                 enemies[r].die()
