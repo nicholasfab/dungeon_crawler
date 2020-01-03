@@ -525,18 +525,18 @@ def start():
             input("You carefully lift the lid of the ancient trunk, revealing a great number of trinkets, some more useful than others.")
             print("Primarily, a few things catch your eye: a ", t1.name, "[1], a ", t2.name, "[2], and a", t3.name, "[3].")
 
-            pick = int(input("Pick an item:"))
+            pick = input("Pick an item:")
             
             if any(s.isdigit() for s in pick):
-                if pick == 1:                
-                inventory.append(t1)
-                b = t1
-            if pick == 2:                
-                inventory.append(t2)
-                b = t2
-            if pick == 3:                
-                inventory.append(t3)
-                b = t3
+                if int(pick) == 1:                
+                    inventory.append(t1)
+                    b = t1
+                if int(pick) == 2:                
+                    inventory.append(t2)
+                    b = t2
+                if int(pick) == 3:                
+                    inventory.append(t3)
+                    b = t3
             else:
                 print("Pick a number!")
                 loot()
