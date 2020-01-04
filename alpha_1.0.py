@@ -409,8 +409,15 @@ def start():
                 input("")
         
                 if level == 4:
-                    print("[BEGINNING OF PART 2: BREAKING THE SEAL]")
-                    #part two intro paragraph
+                    input("[BEGINNING OF PART 2: BREAKING THE SEAL]")
+                    input("As you dust yourself off once more, you notice something... odd.")
+                    input("The air is now a little mustier. A little older.")
+                    input("The dark stone seems to hum, and you can swear that you hear faint whispers echoeing through the floor.")
+                    input("As you rise to your feet, you are hit by a sudden wave of vertigo.")
+                    input("A voice, different from the one that first greeted you, sounds from somewhere. You do not hear it, you can't even identify what twisted, arcane tongue it speaks in, but it resonates within your bones.")
+                    input("This could only be the voice of the Elder God that you seek. You can feel Patikkira watching you from the unimaginable depths beneath your feet.")
+                    input("'I see you, human.'")
+                    input("The presence gets a little fainter and you shudder as you prepare to continue your journey.")
                 floorstart()
             else:
                 input("You decide there is still more to be found on the level of the dungeon you are already in.")
